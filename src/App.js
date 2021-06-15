@@ -1,13 +1,9 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import {Button} from '@material-ui/core';
 
 function App() {
   return (
-    <div className="App">
-      <Button>Click Me</Button>
-      hello world
-    </div>
+    <h1>Welcome To the main page</h1>
   );
 }
 
