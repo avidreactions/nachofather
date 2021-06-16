@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textAlign: "center",
   },
   appBar: {
     backgroundColor: "red",
@@ -61,7 +62,10 @@ const Nav = (props) => {
         position="static"
         style={{
           backgroundColor: appBarColor,
-          color: appBarColor === "white" ? "black" : "white",
+          color:
+            appBarColor === "white" || appBarColor === "lavender"
+              ? "black"
+              : "white",
         }}
       >
         <Toolbar>
@@ -80,7 +84,7 @@ const Nav = (props) => {
             Nacho Father
           </Typography>
           <Button color="inherit" onClick={changeAppBarColor}>
-            Button that does something
+            Click
           </Button>
         </Toolbar>
       </AppBar>
