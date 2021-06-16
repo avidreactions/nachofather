@@ -34,21 +34,21 @@ const Cat = () => {
       .catch((err) => {});
   };
 
-  const getPub = () => {
-    axios
-      .get("https://api.publicapis.org/random")
-      .then((res) => {
-        console.log("randomness!", res);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const getPub = () => {
+  //   axios
+  //     .get("https://api.publicapis.org/random")
+  //     .then((res) => {
+  //       console.log("randomness!", res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       {catData !== undefined && (
         <>
           <Grid item>
-            <IconButton aria-label="delete" onClick={getPub}>
+            <IconButton aria-label="delete" onClick={getCatPics}>
               <PetsIcon style={{ fontSize: "50px" }} />
               <p>Click Me for Another!</p>
             </IconButton>
