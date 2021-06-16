@@ -61,7 +61,10 @@ const Nav = (props) => {
         position="static"
         style={{
           backgroundColor: appBarColor,
-          color: appBarColor === "white" ? "black" : "white",
+          color:
+            appBarColor === "white" || appBarColor === "lavender"
+              ? "black"
+              : "white",
         }}
       >
         <Toolbar>
