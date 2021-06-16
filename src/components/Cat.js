@@ -17,14 +17,15 @@ const useStyles = makeStyles((theme) => ({
 const Cat = () => {
   const classes = useStyles();
   const [catData, setCatData] = useState({});
+
   useEffect(() => {
-    getCat();
+    getCatPics();
     return () => {
       setCatData({});
     };
-  }, []);
+  }, []); // eslint-disable-line
 
-  const getCat = () => {
+  const getCatPics = () => {
     axios
       .get("https://api.thecatapi.com/v1/images/search")
       .then((res) => {
@@ -33,13 +34,21 @@ const Cat = () => {
       .catch((err) => {});
   };
 
-  console.log("howday", catData);
+  const getPub = () => {
+    axios
+      .get("https://api.publicapis.org/random")
+      .then((res) => {
+        console.log("randomness!", res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       {catData !== undefined && (
         <>
           <Grid item>
-            <IconButton aria-label="delete" onClick={getCat}>
+            <IconButton aria-label="delete" onClick={getPub}>
               <PetsIcon style={{ fontSize: "50px" }} />
               <p>Click Me for Another!</p>
             </IconButton>
