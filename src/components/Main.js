@@ -1,18 +1,51 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import vader from "../files/memes/nacho.jpg";
+import React, { useState } from "react";
+import { Button, Grid, makeStyles } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-  imageContainer: {},
+  banner: {
+    position: "relative",
+    top: theme.spacing(30),
+  },
+  jokeContainer: {
+    margin: theme.spacing(3),
+    fontSize: theme.spacing(4),
+  },
 }));
 
 const Main = () => {
   const classes = useStyles();
+  const [showJoke, setShowJoke] = useState(false);
+  const [joke, setJoke] = useState([]);
+  const getJoke = () => {
+    console.log("getting joke.....");
+    axios
+      .get("https://icanhazdadjoke.com", { headers: { Accept: "text/plain" } })
+      .then((res) => {
+        console.log("Jokes have been successfully retrieved!");
+        setJoke(res.data);
+      })
+      .catch((err) => {
+        console.log("there was an error: ", err);
+      });
+  };
+  console.log("HERES THE JOKE!", joke);
   return (
-    <Grid container justify="center">
-      <Grid item className={classes.imageContainer}>
-        <img src={vader} alt="Jarth Mader" />
+    <Grid container direction="column" justify="center" alignItems="center">
+      <Grid item className={classes.jokeContainer}>
+        {joke}
+      </Grid>
+      <Grid item>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            setShowJoke(!showJoke);
+            getJoke();
+          }}
+        >
+          get a joke
+        </Button>
       </Grid>
     </Grid>
   );

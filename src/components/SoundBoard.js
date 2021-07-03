@@ -13,7 +13,7 @@ import { randomIntGenerator } from "../utils/funky";
 
 const useStyles = makeStyles((theme) => ({}));
 
-const Fart = () => {
+const SoundBoard = () => {
   const classes = useStyles();
   const fartsArr = [Fart1, Fart2, Fart3, Fart4, Fart5, Fart6];
   const handleFart = () => {
@@ -47,4 +47,4 @@ const Fart = () => {
   );
 };
 
-export default Fart;
+export default SoundBoard;
