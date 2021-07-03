@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { Menu, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Main from "./components/Main";
-import About from "./components/About";
-import NotFound from "./components/NotFound";
-import Nav from "./components/Nav";
-import Fart from "./components/Fart";
-import Dog from "./components/Dog";
-import Cat from "./components/Cat";
-import "./App.css";
+import Main from "./Main";
+import About from "./About";
+import NotFound from "./NotFound";
+import Nav from "./Nav";
+import SoundBoard from "./SoundBoard";
+import Dog from "./Dog";
+import Cat from "./Cat";
+import "../styles/App.css";
 
 const useStyles = makeStyles((theme) => ({
   appContainer: {
     height: "100vh",
     width: "100vw",
-  },
-  viewArea: {
-    marginTop: theme.spacing(1),
   },
 }));
 
@@ -38,7 +35,7 @@ const App = () => {
             <Route path="/about" component={About} />
             <Route path="/cats" component={Cat} />
             <Route path="/dogs" component={Dog} />
-            <Route path="/fart" component={Fart} />
+            <Route path="/sounds" component={SoundBoard} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
@@ -51,7 +48,7 @@ const App = () => {
         >
           <MenuItem onClick={handleClose}>
             <Link to="/" className={classes.links}>
-              Hello there
+              Home
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
@@ -65,8 +62,8 @@ const App = () => {
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/fart" className={classes.links}>
-              Fart Room
+            <Link to="/sounds" className={classes.links}>
+              Sound Room
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
