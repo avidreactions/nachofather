@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Grid, makeStyles } from "@material-ui/core";
+import { Button, Grid, makeStyles, TextField } from "@material-ui/core";
 import axios from "axios";
+import Glitch from "./Glitch";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -11,12 +12,27 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
     fontSize: theme.spacing(4),
   },
+  obscureField: {
+    opacity: "0.25",
+    display: "inline-block",
+    position: "absolute",
+    bottom: "0",
+    right: "0",
+  },
+  obscureLink: {
+    display: "inline-block",
+    position: "absolute",
+    bottom: "0",
+  },
 }));
 
 const Main = () => {
   const classes = useStyles();
   const [showJoke, setShowJoke] = useState(false);
   const [joke, setJoke] = useState([]);
+  const [fakePassword, setFakePassword] = useState("");
+  const [showButton, setShowButton] = useState(false);
+
   const getJoke = () => {
     console.log("getting joke.....");
     axios
@@ -29,7 +45,26 @@ const Main = () => {
         console.log("there was an error: ", err);
       });
   };
-  console.log("HERES THE JOKE!", joke);
+
+  const clearMe = () => {
+    const input = document.getElementById("clearMe");
+    input.value = "";
+  };
+
+  const handleChange = (e) => {
+    setFakePassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const password = process.env.REACT_APP_SUPER_REAL_PASSWORDS;
+    if (fakePassword === password) {
+      setShowButton(true);
+    }
+
+    setFakePassword("");
+    clearMe();
+  };
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid item className={classes.jokeContainer}>
@@ -47,6 +82,20 @@ const Main = () => {
           get a joke
         </Button>
       </Grid>
+      <Grid>
+        <Glitch />
+      </Grid>
+      {showButton && (
+        <Button
+          href={process.env.REACT_APP_LOCATION}
+          className={classes.obscureLink}
+        >
+          Push me
+        </Button>
+      )}
+      <form className={classes.obscureField} noValidate onSubmit={handleSubmit}>
+        <TextField id="clearMe" onChange={handleChange} />
+      </form>
     </Grid>
   );
 };
