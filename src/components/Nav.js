@@ -49,7 +49,9 @@ const Nav = (props) => {
     "white",
     "pink",
   ];
-  const [appBarColor, setAppBarColor] = useState(backgroundPalette[9]);
+  const [appBarColor, setAppBarColor] = useState(
+    backgroundPalette[backgroundPalette.length - 2]
+  );
 
   const changeAppBarColor = () => {
     const randInt = randomIntGenerator(1, 21);
