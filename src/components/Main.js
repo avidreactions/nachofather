@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: "0",
   },
+  jobTitle: {
+    transition: "2s",
+    fontDize: "4em",
+    fontFamily: "Ultra",
+    display: "inline-block",
+    position: "relative",
+    bottom: "40px",
+  },
 }));
 
 const Main = () => {
@@ -38,7 +46,7 @@ const Main = () => {
     axios
       .get("https://icanhazdadjoke.com", { headers: { Accept: "text/plain" } })
       .then((res) => {
-        console.log("Jokes have been successfully retrieved!");
+        console.log("Jokes have been successfully retrieved!", res.data);
         setJoke(res.data);
       })
       .catch((err) => {
@@ -73,7 +81,7 @@ const Main = () => {
       <Grid item>
         <Button
           variant="contained"
-          color="primary"
+          color="white"
           onClick={() => {
             setShowJoke(!showJoke);
             getJoke();
@@ -83,15 +91,17 @@ const Main = () => {
         </Button>
       </Grid>
       <Grid>
-        <Glitch />
+        <Glitch fakePassword={fakePassword} />
       </Grid>
       {showButton && (
-        <Button
-          href={process.env.REACT_APP_LOCATION}
-          className={classes.obscureLink}
-        >
-          Push me
-        </Button>
+        <>
+          <Button
+            href={process.env.REACT_APP_LOCATION}
+            className={classes.obscureLink}
+          >
+            Push me
+          </Button>
+        </>
       )}
       <form className={classes.obscureField} noValidate onSubmit={handleSubmit}>
         <TextField id="clearMe" onChange={handleChange} />

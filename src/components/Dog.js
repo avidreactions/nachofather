@@ -16,9 +16,11 @@ const useStyles = makeStyles((theme) => ({
   },
   getDogButton: {
     display: "inline-block",
-    position: "absolute",
-    top: "64px",
-    left: "200px",
+    left: "50%",
+    transform: "translate(-50%)",
+    zIndex: "1",
+    color: "red",
+    opacity: "0.4",
   },
   grass: {
     display: "inline-block",
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       width: "100%",
     },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   doberman: {
     maxWidth: "200px",
@@ -34,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
     margin: theme.spacing(0, 3),
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   flip: {
     transform: "rotateY(180deg)",
@@ -59,21 +67,26 @@ const Dog = () => {
       .catch((err) => {});
   };
 
-  console.log("howday", dogData);
   return (
     <Grid container justify="center" direction="row" alignItems="center">
       <Grid item className={`${classes.doberman} ${classes.flip}`}>
         <img src={doggy} alt="" />
       </Grid>
       <Grid item>
-        <IconButton
-          aria-label="delete"
-          onClick={getDog}
-          className={classes.getDogButton}
-        >
-          <PetsIcon style={{ fontSize: "50px" }} />
-        </IconButton>
-        <img src={dogData} alt="doggo" className={classes.dogImg} />
+        <Grid container direction="column" justify="center" alignItems="center">
+          <Grid item>
+            <IconButton
+              aria-label="delete"
+              onClick={getDog}
+              className={classes.getDogButton}
+            >
+              <PetsIcon style={{ fontSize: "50px" }} />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <img src={dogData} alt="doggo" className={classes.dogImg} />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item className={classes.doberman}>
         <img src={doggy} alt="" />
