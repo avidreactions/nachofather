@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Ultra";
+  src: url("../fonts/Ultra.otf") format("opentype");
+}
+
 a {
   text-decoration: none;
   font-size: 18px;

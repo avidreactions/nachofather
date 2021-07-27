@@ -27,14 +27,19 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: "0",
     "& img": {
-      width: "100%",
+      width: "50%",
     },
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },
-  doberman: {
+  dobermanLeft: {
     maxWidth: "200px",
+    display: "inline-block",
+    position: "absolute",
+    left: "10px",
+    top: "35%",
+    transform: "rotateY(180deg)",
     "& img": {
       width: "100%",
     },
@@ -43,9 +48,21 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-  flip: {
-    transform: "rotateY(180deg)",
+  dobermanRight: {
+    maxWidth: "200px",
+    display: "inline-block",
+    position: "absolute",
+    right: "10px",
+    top: "35%",
+    "& img": {
+      width: "100%",
+    },
+    margin: theme.spacing(0, 3),
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
+  flip: {},
 }));
 
 const Dog = () => {
@@ -69,7 +86,7 @@ const Dog = () => {
 
   return (
     <Grid container justify="center" direction="row" alignItems="center">
-      <Grid item className={`${classes.doberman} ${classes.flip}`}>
+      <Grid item className={classes.dobermanLeft}>
         <img src={doggy} alt="" />
       </Grid>
       <Grid item>
@@ -88,10 +105,11 @@ const Dog = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={classes.doberman}>
+      <Grid item className={classes.dobermanRight}>
         <img src={doggy} alt="" />
       </Grid>
       <div className={classes.grass}>
+        <img src={grass} alt="some grass" />
         <img src={grass} alt="some grass" />
       </div>
     </Grid>

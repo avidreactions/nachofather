@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Grid, makeStyles, TextField } from "@material-ui/core";
-import axios from "axios";
+import FadeIn from "react-fade-in";
 import Glitch from "./Glitch";
+import logo from "../files/images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -20,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
     right: "0",
   },
   obscureLink: {
-    display: "inline-block",
-    position: "absolute",
-    bottom: "0",
+    fontSize: "24px",
   },
   jobTitle: {
     transition: "2s",
@@ -32,27 +31,19 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     bottom: "40px",
   },
+  pfLogo: {
+    maxWidth: theme.spacing(60),
+    zIndex: "1",
+    "& img": {
+      width: "100%",
+    },
+  },
 }));
 
 const Main = () => {
   const classes = useStyles();
-  const [showJoke, setShowJoke] = useState(false);
-  const [joke, setJoke] = useState([]);
   const [fakePassword, setFakePassword] = useState("");
   const [showButton, setShowButton] = useState(false);
-
-  const getJoke = () => {
-    console.log("getting joke.....");
-    axios
-      .get("https://icanhazdadjoke.com", { headers: { Accept: "text/plain" } })
-      .then((res) => {
-        console.log("Jokes have been successfully retrieved!", res.data);
-        setJoke(res.data);
-      })
-      .catch((err) => {
-        console.log("there was an error: ", err);
-      });
-  };
 
   const clearMe = () => {
     const input = document.getElementById("clearMe");
@@ -74,33 +65,28 @@ const Main = () => {
     clearMe();
   };
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
-      <Grid item className={classes.jokeContainer}>
-        {joke}
-      </Grid>
+    <Grid
+      container
+      direction="column"
+      justify="space-between"
+      alignItems="center"
+    >
       <Grid item>
-        <Button
-          variant="contained"
-          color="white"
-          onClick={() => {
-            setShowJoke(!showJoke);
-            getJoke();
-          }}
-        >
-          get a joke
-        </Button>
-      </Grid>
-      <Grid>
         <Glitch fakePassword={fakePassword} />
       </Grid>
       {showButton && (
         <>
-          <Button
-            href={process.env.REACT_APP_LOCATION}
-            className={classes.obscureLink}
-          >
-            Push me
-          </Button>
+          <FadeIn item className={classes.pfLogo}>
+            <img src={logo} alt="logo" />
+          </FadeIn>
+          <FadeIn>
+            <Button
+              href={process.env.REACT_APP_LOCATION}
+              className={classes.obscureLink}
+            >
+              Enter Here
+            </Button>
+          </FadeIn>
         </>
       )}
       <form className={classes.obscureField} noValidate onSubmit={handleSubmit}>

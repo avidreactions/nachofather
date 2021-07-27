@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: "0",
     "& img": {
-      width: "100%",
+      width: "50%",
     },
     [theme.breakpoints.down("sm")]: {
       display: "none",
@@ -78,6 +78,7 @@ const Cat = () => {
         <img src={catData.url} alt="cats" className={classes.catPic} />
       </Grid>
       <Grid item className={classes.grass}>
+        <img src={grass} alt="some grass" />
         <img src={grass} alt="some grass" />
       </Grid>
       <div></div>
