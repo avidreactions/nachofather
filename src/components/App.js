@@ -10,7 +10,6 @@ import SoundBoard from "./SoundBoard";
 import Dog from "./Dog";
 import Cat from "./Cat";
 import "../styles/App.css";
-require("dotenv").config({ path: "/file/.env" });
 
 const useStyles = makeStyles((theme) => ({
   appContainer: {
