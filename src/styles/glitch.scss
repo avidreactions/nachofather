@@ -3,6 +3,11 @@
   src: url("../fonts/Ultra.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Rusty Bucket";
+  src: url("../fonts/RustyBucket-Regular.ttf");
+}
+
 $primaryColor: black;
 $secondaryColor: white;
 $steps: 20;
